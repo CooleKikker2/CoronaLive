@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(31, 83, 35);
+    background-color: #cfdaec;
 }
 
 h1{
@@ -20,12 +20,9 @@ p{
 
 .logindiv {
     
-    
-    background-color: white;
+    background-color: rgb(224, 250, 231);
     border-radius: 0% 0% 25% 25%;
-    -webkit-box-shadow: 10px 10px 94px 0px lime;
-    -moz-box-shadow: 10px 10px 94px 0px lime;
-    box-shadow: 10px 10px 94px 0px lime;
+      box-shadow: 0 0 30px 20px rgb(224, 250, 231);
 
     height: 80vh;
     width: 40%;
@@ -58,13 +55,12 @@ p{
 .logindiv form input[type=submit]:hover{
     border: 1px solid black;
     cursor: pointer;
-    background-color: lime;
-    color: black;
+    background-color: rgb(185, 250, 204);
 }
 
 .logindiv form input:focus{
     outline: none;
-    border-bottom: 2px solid lime;
+    border-bottom: 2px dotted black;
 }
 
 
@@ -80,23 +76,4 @@ p{
     }
   }
 
-.error{
-    color:red;
-}
-
-.a{
-    text-decoration: underline;
-}
-
-.a:hover{
-    cursor: pointer;
-}
-
-.register{
-    width: 90%;
-    text-align: right;
-}
-
-.register:hover{
-    color: green;
-}
+  
