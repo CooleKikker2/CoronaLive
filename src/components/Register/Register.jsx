@@ -1,5 +1,6 @@
 import React from "react";
 import firebase from "../../firebase";
+import Login from "../Login/Login";
 
 class Register extends React.Component {
     constructor(props){
@@ -12,6 +13,7 @@ class Register extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.showLogin = this.showLogin.bind(this);
         
     }
 
@@ -22,8 +24,23 @@ class Register extends React.Component {
                     <input type="text" placeholder="E-mailadres" required="required" onChange={this.handleChange} id="inputEmail"></input>
                     <input type="password" placeholder="Wachtwoord" required="required" onChange={this.handleChange} id="inputPassword"></input>
                     <input type="password" placeholder="Wachtwoord bevestigen" required="required" onChange={this.handleChange} id="inputCheck"></input>
+                    <p className="error">{this.state.error}</p>
                     <input type="submit" value="Maak account aan!"></input>
+                    <p className="a register" onClick={this.showLogin}>Heb je al een account? Log in!</p>
                 </form>
+            </div>
+        )
+    }
+
+    showLogin(){
+        this.setState({display: "Login"});
+        this.forceUpdate();
+    }
+
+    displayLogin(){
+        return(
+            <div>
+                <Login display="block"></Login>
             </div>
         )
     }
@@ -38,8 +55,20 @@ class Register extends React.Component {
         }
     }
 
-    handleSubmit(){
-        console.log("Submit Handled!");
+    handleSubmit(event){
+        if(this.state.inputPassword === this.state.inputCheck){
+            firebase.auth().createUserWithEmailAndPassword(this.state.inputUsername, this.state.inputCheck)
+                .then((userCredential) =>{
+                    this.state.display = "Login";
+                    this.showLogin();
+                })
+                .catch((dataerror) =>{
+                    this.state.error = dataerror.message;
+                })
+        }else{
+            this.setState({error : "De wachtwoorden komen niet overeen! Probeer het nog een keer!"})
+        }
+        event.preventDefault();
     }
 
     render(){
@@ -47,12 +76,19 @@ class Register extends React.Component {
             return(
                 <div className="logindiv">
                     <h1>Registreer op de Corona-Live App!</h1>
-                    <p>Maak hier een nieuw account aan</p>
+                    <p>Maak hier een nieuw account aan.</p>
                     {this.registerForm()}
                     
                 </div>
             );
-        }else{  
+        }else if(this.state.display === "Login"){
+            return(
+                <div>
+                    {this.displayLogin()}
+                </div>
+            )
+        }
+        else{  
             return "";
         }
     }
