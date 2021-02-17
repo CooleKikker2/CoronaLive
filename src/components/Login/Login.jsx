@@ -1,6 +1,8 @@
 import React from "react";
 import firebase from "../../firebase";
 import Register from "../Register/Register";
+import Map from "../Map/map";
+import cookie from 'react-cookies';
 
 class Login extends React.Component {
     constructor(props){
@@ -19,6 +21,11 @@ class Login extends React.Component {
         this.showRegister = this.showRegister.bind(this);
             
         this.state.display = this.props.display;
+
+        if(cookie.load('logged')){
+            this.state.display = "map";
+            this.forceUpdate();
+        }
 
     }
 
@@ -52,6 +59,14 @@ class Login extends React.Component {
         )
     }
 
+    displayMap(){
+        return(
+            <div>
+                <Map></Map>
+            </div>
+        )
+    }
+
     
 
     handleChange(event){
@@ -66,8 +81,9 @@ class Login extends React.Component {
         firebase.auth().signInWithEmailAndPassword(this.state.inputUsername, this.state.inputPassword)
             .then((userCredential) =>{
                 this.setState({loggedIn: true})
-                this.setState({display: "block"})
-                this.changeVisible(); 
+                this.setState({display: "map"})
+                cookie.save('logged', userCredential.user , { path: '/' });
+                this.forceUpdate();
             })
             .catch((error) => {
                 this.setState({error: "Het inloggen is mislukt! Heb je de goede gegevens gebruikt?"});
@@ -98,6 +114,12 @@ class Login extends React.Component {
             return(
                 <div>
                     {this.displayRegister()}
+                </div>
+            )
+        }else if(this.state.display === "map"){
+            return(
+                <div>
+                    {this.displayMap()}
                 </div>
             )
         }

@@ -101,3 +101,86 @@ p{
 .register:hover{
     color: green;
 }
+
+.mapHeader{
+    background-color: green;
+    width: 100%;
+    height: 10vh;
+}
+
+.mapFooter{
+    background-color: green;
+    width: 100%;
+    height: 10vh;
+    bottom: 0;
+    position: absolute;
+}
+
+.mapHeader i{
+    font-size: 45px;
+    line-height: 10vh;
+    margin-left: 15px;
+    color: lime;
+}
+
+.mapHeader i.account{
+    float: right;
+    margin-right: 15px;
+}
+
+.mapFooter i{
+    font-size: 45px;
+    line-height: 10vh;
+    margin-left: 15px;
+    color: lime;
+}
+
+.mapFooter i.leave{
+    float: right;
+    margin-right: 15px;
+}
+
+.mapFooter i:hover{
+    color: rgb(4, 161, 4);
+    cursor: pointer;
+}
+
+select#inputIcon {
+    width: 80%;
+    height: 25px;
+    margin-top: 5px;
+    transition: 0.4s;
+    border: 0;
+    border-bottom: 2px solid black;
+    background-color: rgba(224, 250, 231, 0);
+    padding: 5px 0px;
+}
+
+.createHome{
+    font-size: 30px;
+    line-height: 10vh;
+    margin-left: 15px;
+    margin-bottom: -25px;
+    color: lime;
+}
+
+.createHome:hover{
+    color: rgb(4, 161, 4);
+    cursor: pointer;
+}
+
+.infodiv {
+    background-color: pink;
+    min-width: 400px;
+    min-height: 80%;
+    padding-top: 4px;
+}
+
+.infodiv h3{
+    text-align: center;
+}
+
+.infodiv p{
+    margin-top: -5px;
+    padding-bottom: 7px;
+}
